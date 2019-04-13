@@ -1,0 +1,25 @@
+body {
+    background-color: #efefef;
+}
+
+#container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.rightPannel {
+    box-sizing: border-box;
+    background-color: white;
+    padding: 2.5%;
+    width: 50%;
+    height: auto;
+}
+
+.leftpannel {
+    width: 40%;
+    background-color: #42fe45;
+    height: auto;
+}
