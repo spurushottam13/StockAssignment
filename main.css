@@ -1,4 +1,4 @@
-body {
+body{
     background-color: #efefef;
 }
 
@@ -6,20 +6,25 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content:space-around;
     align-items: stretch;
 }
 
-.rightPannel {
+.rightPannel{
     box-sizing: border-box;
     background-color: white;
     padding: 2.5%;
-    width: 50%;
+    width:  50%;
     height: auto;
 }
-
-.leftpannel {
+.leftpannel{
     width: 40%;
     background-color: #42fe45;
     height: auto;
+}
+.price{
+    background: #efefef;
+    color : #000;
+    border: 0px;
+    text-align: center;
 }
