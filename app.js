@@ -1,17 +1,20 @@
 
 dataSet = []  // Containng all Data of calender
-newDS = []
+url = 'https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201?api_key=keydF5mdPvdf8vCa4';
 
 document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            
             plugins: [ 'dayGrid', 'interaction' ],
+            
+            // Fetch Price and put in DataSet arr.            
             events: function(info, successCallback, failureCallback) {
-                let url = 'https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201?api_key=keydF5mdPvdf8vCa4';
                 fetch(url).then(res => res.json())
                 .then((out) => {
                     dataSet = Array.prototype.slice.call(out.records);
                     addRemoveBtn(dataSet)
+                    changeReport()
                     successCallback(
                     dataSet.map(function(eventEl) {
                       return {
@@ -20,14 +23,37 @@ document.addEventListener('DOMContentLoaded', function() {
                         start: eventEl.fields.date
                       }
                     })
-                  )
-                    
+                  )                    
+                })                
+            },
+            
+            //Handler for Remove Btn
+            eventClick: function(info){
+                console.log('Event '+ info.event.id)
+                temp = info.event.id.substring(1)
+                del = "https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201/"+temp
+                console.log(del)
+                fetch(del,{
+                    method: "DELETE",
+                    mode: "cors", 
+                    headers: {
+                        "Authorization": "Bearer keydF5mdPvdf8vCa4"
+                    }
+                }).then(function(res){
+                   if (res.ok) {
+                        console.log("Removed Price");
+                        calendar.refetchEvents()
+                    } else {
+                        console.log("Could not reach the API: " + response.statusText);
+                    }
                 })
-                
             }
-        });
+            
+        });          
         calendar.render();
+    
       });
+
 
 function addRemoveBtn(arr){
     let len = Object.keys(arr).length
@@ -40,8 +66,34 @@ function addRemoveBtn(arr){
             }
         }
         dataSet.push(temp)  // Update DataSet with Remove B
-    }
+    }   
 }
 
 
 
+function addPrice(){
+    let date = document.getElementById('date').value;
+    let price = document.getElementById('price').value;
+    let newE = "https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201"
+    fetch(newE,{
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer keydF5mdPvdf8vCa4",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+                "fields": {
+                    "date": date,
+                    "price": price
+                }
+        })
+        
+    }).then(function(res){
+        if (res.ok) {
+            console.log("New Price added");
+            calendar.refetchEvents()
+        } else {
+            console.log("Could not reach the API: " + res.statusText);
+        }
+    })
+}
