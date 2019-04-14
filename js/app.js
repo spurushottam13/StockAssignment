@@ -1,6 +1,6 @@
 
 dataSet = []  // Containng all Data of calender
-url = 'https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201?api_key=keydF5mdPvdf8vCa4';
+url = 'https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201?view=Grid%20view&api_key=keydF5mdPvdf8vCa4';
 
 document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
