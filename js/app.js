@@ -1,4 +1,3 @@
-
 dataSet = []  // Containng all Data of calender
 url = 'https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201?view=Grid%20view&api_key=keydF5mdPvdf8vCa4';
 
@@ -50,8 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
         });          
-        calendar.render();
-    
+        calendar.render();    
       });
 
 
@@ -69,11 +67,11 @@ function addRemoveBtn(arr){
     }   
 }
 
-
-
 function addPrice(){
     let date = document.getElementById('date').value;
     let price = document.getElementById('price').value;
+    
+            
     let newE = "https://api.airtable.com/v0/applvIErrK8lnXyJK/Table%201"
     fetch(newE,{
         method: "POST",
@@ -90,9 +88,14 @@ function addPrice(){
         
     }).then(function(res){
         if (res.ok) {
+            document.getElementById('date').value = null;
+            document.getElementById('price').value = null;
             console.log("New Price added");
             calendar.refetchEvents()
         } else {
+            alert(res.statusText);
+            document.getElementById('date').value = null;
+            document.getElementById('price').value = null;
             console.log("Could not reach the API: " + res.statusText);
         }
     })

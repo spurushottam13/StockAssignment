@@ -5,47 +5,45 @@
     <link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
     <link rel="stylesheet" href="css/chartist.min.css">
     <link href='css/main.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
   </head>
   <body>
 
      
-    <div id="container">
-    <div id='calendar' class="rightPannel"></div>
+<div id="container">
+        
+    <div  class="rightPannel">
+        <p class="heading">STOCK ASSIGNMENT</p>
+        <div id='calendar' class="calendar"></div>
+        <div class="addPrice">
+            <input id="date" type="text" placeholder="Date YYYY-MM-DD">
+            <input id="price" type="text" placeholder="Price">
+            <button  class="btn" onclick="addPrice()">Add Price</button>
+        </div>
+     
+    </div>
+    
+    
     <div class='leftPannel'>
-            
-        <h3>Max Profit</h3>
-        <h2 id="maxProfit"></h2>
-        
-        
+        <p id="maxProfit"></p>
         <div class="ct-chart ct-perfect-fourth"></div>
-        
-        <span>
-        <p>Best Buy</p>
-        <p id="bestBuy">dd</p>
-        <p>Best Sell</p>
-        <p id="bestSell">fggf</p>
-        </span>
-        
-        
+        <div class="date">
+            <p id="bestBuy"></p>
+            <p id="bestSell"></p>
+        </div>
+        <div class="tag">
+            <p>Best Buy</p>
+            <p>Best Sell</p>
         </div>
     </div>
       
-    <input id="date" type="text" placeholder="Date YYYY-MM-DD">
-      <input id="price" type="text" placeholder="Price">
-      <button onclick="addPrice()">Add Price</button>
-      
-      
-      
-      
-      
-      
-      
-    <script src="js/chartist.min.js"></script>  
-    <script src='fullcalendar/core/main.js'></script>
+</div>
+      <script src="js/chartist.min.js"></script>
+      <script src='fullcalendar/core/main.js'></script>
       <script src='fullcalendar/interaction/main.js'></script>
-    <script src='fullcalendar/daygrid/main.js'></script>
-    <script src="js/app.js"></script>
+      <script src='fullcalendar/daygrid/main.js'></script>
+      <script src="js/app.js"></script>
       <script src="js/profit.js"></script>
-      <script src="js/chart.js"></script>
+      <script src="js/chart.js"></script>      
   </body>
 </html>
